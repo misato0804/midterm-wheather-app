@@ -1,25 +1,25 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-  </head> 
+  </head>
   <body>
-    <!-- Favorite Cities: dropdown -->
-    <!-- Display: Current Weather -->
     <div class="input">
-      <input type="text" class="inputValue" placeholder="Enter a city :)">
-      <input type="submit" value="Submit" class="button"> 
+      <select name="favoriteCities" id="favoriteCities">
+        <option value="default">Favorite cities</option>
+    </select>
+      <input type="text" id="autocomplete" placeholder="Search city" />
     </div>
-    <div class="container"> 
+    <div class="container">
       <div class="current-info">
-        
+
         <div class="others" id="current-weather-items">
-        
+
           <div class="date-item" id="date">
             WEATHER LOCATION
           </div>
@@ -47,8 +47,12 @@
         <div id="time-zone" class="time-zone">North America / Vancouver</div>
         <div id="country" class="time-zone country">CA</div>
       </div>
-      <!-- Daily Forecast 5 days -->
-      <!-- 3 hours range-->
+    <script type="text/javascript" src="apikey.js"></script>
     <script src="indexCyb.js"></script>
+    <script src="index.js"></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"
+    ></script>
   </body>
-</html>
+</html> -->

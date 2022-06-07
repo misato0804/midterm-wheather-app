@@ -5,38 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-  </head> 
+  </head>
   <body>
     <!-- Favorite Cities: dropdown -->
     <!-- Display: Current Weather -->
+
     <div class="input">
-      <input type="text" class="inputTxt" placeholder=" >> Enter a city :)">
-      <input type="submit" value="Submit" class="button"> 
+      <select name="favoriteCities" id="favoriteCities">
+        <option value="default">Favorite cities</option>
+    </select>
+      <input type="text" id="autocomplete" placeholder="Search city" />
     </div>
-    <div class="container"> 
+    <div class="container">
       <div class="current-info">
-        
+
         <div class="others" id="current-weather-items">
-        
+
           <div class="date-item" id="date">
-            Monday, 06 June
+            WEATHER LOCATION
           </div>
 
           <div class="weater-itme">
-            <p class="name"></p>
+            <h1 class="name"></h1>
           </div>
           <div class="weater-itme">
             <div>Description :</div>
+            <h1 class="desc"></h1>
             <p class="desc"></p>
           </div>
           <div class="weater-itme">
             <div>Temperature :</div>
-            <div class="temp"> &#176; F</div>
+            <p class="temp"> &#176; F</p>
           </div>
           <div class="weater-itme">
-            <p><img src="" alt="weather icon" class="w-icon"></P>
+            <img src="" alt="weather icon" class="w-icon">
           </div>
         </div>
       </div>
@@ -48,7 +52,13 @@
       </div>
       <!-- Daily Forecast 5 days -->
       <!-- 3 hours range-->
-    <script src="koki.js"></script>
-    <script src="index.js"></script>
+    <script type="text/javascript" src="apikey.js"></script>
+    <!-- <script src="indexCyb.js"></script> -->
+    <!-- <script src="koki.js"></script> -->
+    <script src="./js/index.js"></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"
+    ></script>
   </body>
 </html>
