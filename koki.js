@@ -1,4 +1,3 @@
-const GOOGLE_API_KEY = config.googleApikey;
 const WEATHER_API_KEY = config.wheatherApi;
 
 // get lat and lng
@@ -16,6 +15,7 @@ function initAutocomplete() {
 // get placeInfo;
 let localData;
 let data;
+
 async function onPlaceChanged() {
   let place = autocomplete.getPlace();
 
@@ -37,9 +37,6 @@ async function onPlaceChanged() {
       console.log('err', err);
       return err;
     }
-
-    let wheather;
-    let test = `http://openweathermap.org/img/wn/${wheather}@2x.png`;
 
     const addButton = document.createElement('button');
     addButton.classList.add('favoriteBtn');
@@ -63,14 +60,16 @@ async function onPlaceChanged() {
   }
 }
 //add favorite city data in selecetbox
+// console.log(localStorage);
 if (localStorage) {
   const selecetBox = document.getElementById('favoriteCities');
 
-  for (var i = 0; i < localStorage.length; i++) {
+  for (let i = 0; i < localStorage.length; i++) {
     const option = document.createElement('option');
     option.text = localStorage.key(i);
     selecetBox.add(option);
+    console.log(localStorage[key(i)]);
     // console.log(option);
   }
 }
-console.log(localStorage);
+// console.log(localStorage);
