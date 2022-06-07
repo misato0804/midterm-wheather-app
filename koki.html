@@ -12,17 +12,18 @@
     </div>
 
     <div>
-      <!-- <input
-        type="text"
-        id="searchCity"
-        placeholder="Search city"
-        onkeyup="inputCheck()"
-      /> -->
+      <select name="favoriteCities" id="favoriteCities">
+        <option value="default">Favorite cities</option>
+      </select>
       <input type="text" id="autocomplete" placeholder="Search city" />
       <!-- <div id="check">入力前</div> -->
     </div>
 
+    <!-- <button id="btn">Button</button> -->
+
+    <script type="text/javascript" src="apikey.js"></script>
     <script src="koki.js"></script>
+    <script src="favoriteData.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"
