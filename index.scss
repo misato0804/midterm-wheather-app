@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap');
+@forward './Misato/misato';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica;
+}
+
+/* 
+** NavBar : Koki
+*/
+
+
+/* 
+** Display : Cybill
+*/
+body {
+    background-image: url(./images/weatherBG.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    // overflow: hidden;
+    height: 100vh;
+    background-color: #032539;
+}
+
+.input { // research demo 
+    font-size: 2rem;
+    text-align: end;
+    padding: 20px;
+    margin: 2rem;
+}
+
+input[type = "text"] {
+    height: 2.6rem;
+    width: 20rem;
+    background-color: #FBF3F2;
+    font-weight: 300;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type = "submit"] {
+    height: 2.6rem;
+    width: 6rem;
+    background-color: #032539;
+    color: #FA991C;
+    font-weight: 400;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 5px;
+}
+
+//Body
+.container {
+    // text-align: center;
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 30px 70px;
+    color: #FBF3F2;
+}
+.current-info .others{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255,255,255, .15);
+    backdrop-filter: blur(4px);
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+}
+
+.date-container {
+    font-weight: 100;
+}
+
+.date-item { //TITLE WEATHER LOCATION
+    font-size: 4rem;
+}
+
+.place-container {
+    text-align: end;
+    padding-right: 70px;
+    font-size: 1rem;
+    color: #FA991C;
+
+    time-zone {
+        font-weight: 100;
+        color: #FA991C;
+        
+        &country {
+            font-size: 0.5rem;
+        }
+    }
+}
+
+/*
+** Daily Forecast 5 days + 3hrs range : Misato
+*/
