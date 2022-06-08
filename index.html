@@ -11,9 +11,6 @@
 </head>
 
 <body>
-  <!-- Favorite Cities: dropdown -->
-  <!-- Display: Current Weather -->
-
   <div class="input">
     <select name="favoriteCities" id="favoriteCities">
       <option value="default">Favorite cities</option>
@@ -24,6 +21,7 @@
   <div class="container">
     <div class="current-info">
       <div class="others" id="current-weather-items">
+        <button class="btn">favorite</button>
         <div class="date-item" id="date">
           WEATHER LOCATION
         </div>
@@ -50,18 +48,13 @@
     <div id="time-zone" class="time-zone">North America / Vancouver</div>
     <div id="country" class="time-zone country">CA</div>
   </div>
-  <!-- Daily Forecast 5 days -->
-  <!-- 3 hours range-->
   <section class="future-weather">
     <div id="every_3hours" class="every_3hours"></div>
     <div id="next_5days" class="next_5days"></div>
   </section>
 
   <script type="text/javascript" src="apikey.js"></script>
-  <!-- <script src="indexCyb.js"></script> -->
-  <!-- <script src="koki.js"></script> -->
   <script src="./js/index.js"></script>
-  <script type="module" src="./Misato/misato.js"></script>
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"></script>
 </body>

@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap');
+
 .future-weather {
   top: 30%;
   left: 10%;
@@ -44,11 +45,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif, Arial, Helvetica;
+  font-family: 'Poppins', sans-serif, Arial, Helvetica;
 }
 
 body {
-  background-image: url(./images/weatherBG.jpg);
+  /* background-image: url(./images/weatherBG.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -62,7 +63,7 @@ body {
   margin: 2rem;
 }
 
-input[type=text] {
+input[type='text'] {
   height: 2.6rem;
   width: 20rem;
   background-color: #fbf3f2;
@@ -72,7 +73,7 @@ input[type=text] {
   border-radius: 5px;
 }
 
-input[type=submit] {
+input[type='submit'] {
   height: 2.6rem;
   width: 6rem;
   background-color: #032539;
@@ -98,7 +99,7 @@ input[type=submit] {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.15);
   -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .date-container {
@@ -121,4 +122,4 @@ input[type=submit] {
 }
 .place-container time-zonecountry {
   font-size: 0.5rem;
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */

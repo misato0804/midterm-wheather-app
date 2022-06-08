@@ -1,4 +1,5 @@
 const WEATHER_API_KEY = config.wheatherApi;
+let searchedCity;
 
 // get lat and lng
 let autocomplete;
@@ -15,88 +16,23 @@ function initAutocomplete() {
 // get placeInfo;
 let localData;
 let data;
-
-async function onPlaceChanged() {
-  let place = autocomplete.getPlace();
-
-  if (!place.geometry) {
-    document.getElementById('autocomplete').placeholder = 'Enter';
-  } else {
-    const lat = place.geometry.location.lat();
-    const lng = place.geometry.location.lng();
-
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}`
-      );
-      const googleChosenCity = await response.json();
-      console.log('success', googleChosenCity);
-
-      const addButton = document.createElement('button');
-      addButton.classList.add('favoriteBtn');
-      addButton.value = `${place.name}`;
-      addButton.textContent = 'favorite';
-      document.body.appendChild(addButton);
-      const favorite = document.getElementsByClassName('favoriteBtn');
-      const chosenCityData = favorite[0];
-
-      //add favorite city data in localstrage
-      chosenCityData.addEventListener('click', () => {
-        if (localStorage.getItem(chosenCityData.value) !== null) {
-          localStorage.removeItem(chosenCityData.value, chosenCityData.value);
-        } else {
-          localStorage.setItem(chosenCityData.value, chosenCityData.value);
-        }
-
-        addedCity = localStorage.getItem(localStorage.value);
-        console.log(addedCity);
-      });
-
-      return googleChosenCity;
-    } catch (err) {
-      console.log('err', err);
-      return err;
-    }
-
-    //////////////To Cybil
-    // - to get wheather data and put it in the proper position from variable of googleChosenCity
-    // - to make star button
-    console.log(googleChosenCity);
-    //////////////////////////////////
-  }
-}
-
-//add favorite city data in selecetbox
-// console.log(localStorage);
-if (localStorage) {
-  const selecetBox = document.getElementById('favoriteCities');
-
-  for (let i = 0; i < localStorage.length; i++) {
-    const option = document.createElement('option');
-    option.text = localStorage.key(i);
-    selecetBox.add(option);
-    // console.log(localStorage[key(i)]);
-    // console.log(option);
-  }
-}
-// console.log(localStorage);
-
 let weatherInfo = {
   myKey: WEATHER_API_KEY,
-  getWeatherInfo: async function (city) {
+  getWeatherInfo: async function (city = 'Vancouver') {
+    // console.log(city);
     const res = await fetch(
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     this.showData(data);
   },
   showData: function (data) {
     const { country } = data.city;
     const { list } = data;
-    console.log(list);
+    // console.log(list);
     let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
-    console.log(next5DaysData);
+    // console.log(next5DaysData);
     //3hoursList
     this.every3HoursList(list);
     //next5days
@@ -166,37 +102,67 @@ let weatherInfo = {
     return innerItem;
   },
 };
-weatherInfo.getWeatherInfo('Burnaby');
+weatherInfo.getWeatherInfo();
 
-///////////////////////Cybil's code//////////////////////////////////
-// // GET All Values
-// var button = document.querySelector('.button');
-// const inputTxt = document.querySelector('.inputTxt');
-// const showData = document.querySelector('.showData');
+/////////////////////////////////////////////////////////
+async function onPlaceChanged() {
+  let place = autocomplete.getPlace();
 
-// // const icon = document.querySelector('.weather.icon');
+  if (!place.geometry) {
+    document.getElementById('autocomplete').placeholder = 'Enter';
+  } else {
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
 
-// /* API KEY by OpenWeather.org */
-// const API_KEY = '64d0314083df655f782bcd486a05f7b0';
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}`
+      );
+      const googleChosenCity = await response.json();
+      searchedCity = place.name;
+      // console.log('success', searchedCity);
+      weatherInfo.getWeatherInfo(googleChosenCity.name);
+    } catch (err) {
+      console.log('err', err);
+      return err;
+    }
+  }
+}
 
-// /* GET Current weather */
-// button.addEventListener('click', () => {
-//   //InPut Value
-//   const inputTxt = inputTxt.value;
+const btn = document.getElementsByClassName('btn')[0];
+const selecetBox = document.getElementById('favoriteCities');
 
-//   //Fetch Through Get API
-//   fetch(
-//     'https://api.openweathermap.org/data/2.5/weather?q=${inputTxt}&units=metric&APPID=${API_KEY}'
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       //console.log(data);
+//add favorite city data in localStrage and selectbox
+const addFavoriteCities = (selectedCity) => {
+  if (localStorage.getItem(selectedCity) !== null) {
+    localStorage.removeItem(selectedCity, selectedCity);
+    for (var i = 0; i < selecetBox.length; i++) {
+      if (selecetBox.options[i].value == selectedCity) {
+        selecetBox.remove(i);
+      }
+    }
+  } else {
+    localStorage.setItem(selectedCity, selectedCity);
+    const option = document.createElement('option');
+    option.value = selectedCity;
+    option.text = selectedCity;
+    selecetBox.add(option);
+  }
+};
 
-//       // Fill Input Field Then Clear Input Field
-//       inputTxt.value = ' ';
+const showDropdown = () => {
+  for (let i = 1; i < localStorage.length; i++) {
+    if (localStorage.key(i) !== 'weblioObjFlg') {
+      const option = document.createElement('option');
+      option.value = localStorage.key(i);
+      option.text = localStorage.key(i);
+      selecetBox.add(option);
+    }
+  }
+};
 
-//       // Show All Data Value
-//       showData.innerHTML =
-//         ' <ul> <li class="desc">${data.weather[0].description} </li>  <li class=""></li></ul>';
-//     });
-// });
+showDropdown();
+
+btn.addEventListener('click', () => {
+  addFavoriteCities(searchedCity);
+});
