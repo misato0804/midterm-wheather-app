@@ -12,8 +12,6 @@ body {
   background-image: url(./images/weatherBG.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  // overflow: hidden;
-  height: 100vh;
   background-color: #032539;
 }
 
@@ -22,7 +20,7 @@ body {
   font-size: 2rem;
   text-align: end;
   padding: 20px;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 input[type='text'] {

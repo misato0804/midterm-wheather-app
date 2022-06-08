@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap");
 .future-weather {
-  top: 30%;
-  left: 10%;
-  width: 80vw;
+  margin: 0 auto;
+  width: 90vw;
 }
 
 .every_3hours {
@@ -51,7 +50,6 @@ body {
   background-image: url(./images/weatherBG.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
   background-color: #032539;
 }
 
@@ -59,7 +57,7 @@ body {
   font-size: 2rem;
   text-align: end;
   padding: 20px;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 input[type=text] {

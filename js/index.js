@@ -1,4 +1,4 @@
-const WEATHER_API_KEY = config.wheatherApi;
+let WEATHER_API_KEY = config.wheatherApi;
 
 // get lat and lng
 let autocomplete;
