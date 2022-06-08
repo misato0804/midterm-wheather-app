@@ -1,64 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-    <link rel="stylesheet" href="./css/index.css">
 
-  </head>
-  <body>
-    <!-- Favorite Cities: dropdown -->
-    <!-- Display: Current Weather -->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="./css/index.css">
 
-    <div class="input">
-      <select name="favoriteCities" id="favoriteCities">
-        <option value="default">Favorite cities</option>
+</head>
+
+<body>
+  <!-- Favorite Cities: dropdown -->
+  <!-- Display: Current Weather -->
+
+  <div class="input">
+    <select name="favoriteCities" id="favoriteCities">
+      <option value="default">Favorite cities</option>
     </select>
-      <input type="text" id="autocomplete" placeholder="Search city" />
-    </div>
-    <div class="container">
-      <div class="current-info">
+    <input type="text" id="autocomplete" placeholder="Search city" />
+  </div>
 
-        <div class="others" id="current-weather-items">
-
-          <div class="date-item" id="date">
-            WEATHER LOCATION
-          </div>
-
-          <div class="weater-itme">
-            <h1 class="name"></h1>
-          </div>
-          <div class="weater-itme">
-            <div>Description :</div>
-            <h1 class="desc"></h1>
-            <p class="desc"></p>
-          </div>
-          <div class="weater-itme">
-            <div>Temperature :</div>
-            <p class="temp"> &#176; F</p>
-          </div>
-          <div class="weater-itme">
-            <img src="" alt="weather icon" class="w-icon">
-          </div>
+  <div class="container">
+    <div class="current-info">
+      <div class="others" id="current-weather-items">
+        <div class="date-item" id="date">
+          WEATHER LOCATION
+        </div>
+        <div class="weater-itme">
+          <h1 class="name"></h1>
+        </div>
+        <div class="weater-itme">
+          <div>Description :</div>
+          <h1 class="desc"></h1>
+          <p class="desc"></p>
+        </div>
+        <div class="weater-itme">
+          <div>Temperature :</div>
+          <p class="temp"> &#176; F</p>
+        </div>
+        <div class="weater-itme">
+          <img src="" alt="weather icon" class="w-icon">
         </div>
       </div>
     </div>
-    </div>
-      <div class="place-container">
-        <div id="time-zone" class="time-zone">North America / Vancouver</div>
-        <div id="country" class="time-zone country">CA</div>
-      </div>
-      <!-- Daily Forecast 5 days -->
-      <!-- 3 hours range-->
-    <script type="text/javascript" src="apikey.js"></script>
-    <!-- <script src="indexCyb.js"></script> -->
-    <!-- <script src="koki.js"></script> -->
-    <script src="./js/index.js"></script>
-    <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"
-    ></script>
-  </body>
+  </div>
+  </div>
+  <div class="place-container">
+    <div id="time-zone" class="time-zone">North America / Vancouver</div>
+    <div id="country" class="time-zone country">CA</div>
+  </div>
+  <!-- Daily Forecast 5 days -->
+  <!-- 3 hours range-->
+  <section class="future-weather">
+    <div id="every_3hours" class="every_3hours"></div>
+    <div id="next_5days" class="next_5days"></div>
+  </section>
+
+  <script type="text/javascript" src="apikey.js"></script>
+  <!-- <script src="indexCyb.js"></script> -->
+  <!-- <script src="koki.js"></script> -->
+  <script src="./js/index.js"></script>
+  <script type="module" src="./Misato/misato.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"></script>
+</body>
+
 </html>
