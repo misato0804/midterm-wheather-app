@@ -5,8 +5,8 @@ const selecetBox = document.getElementById('favoriteCities');
 
 //return a favorite city from droppdown
 const getSelectedData = () => {
-  var element = document.getElementById('favoriteCities');
-  var cityName = element.options[element.selectedIndex].text;
+  let element = document.getElementById('favoriteCities');
+  let cityName = element.options[element.selectedIndex].text;
   // console.log(cityName);
   return cityName;
 };
@@ -27,7 +27,7 @@ const showDropdown = () => {
 const addFavoriteCities = (selectedCity) => {
   if (localStorage.getItem(selectedCity) !== null) {
     localStorage.removeItem(selectedCity, selectedCity);
-    for (var i = 0; i < selecetBox.length; i++) {
+    for (let i = 0; i < selecetBox.length; i++) {
       if (selecetBox.options[i].value == selectedCity) {
         selecetBox.remove(i);
       }
@@ -56,21 +56,17 @@ let localData;
 let data;
 let weatherInfo = {
   myKey: WEATHER_API_KEY,
-  getWeatherInfo: async function (city = 'Vancouver') {
-    // console.log(city);
+  defaultCity: 'Vancouver',
+  getWeatherInfo: async function (city) {
     const res = await fetch(
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
-    // console.log(data);
     this.showData(data);
   },
   showData: function (data) {
-    const { country } = data.city;
     const { list } = data;
-    // console.log(list);
     let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
-    // console.log(next5DaysData);
     //3hoursList
     this.every3HoursList(list);
     //next5days
@@ -86,6 +82,13 @@ let weatherInfo = {
       let temp = list[i].main.temp;
       let innerItem = this.innerContent(day, time, iconImg, temp);
       let li = document.createElement('li');
+      let input = document.getElementById('autocomplete').value;
+      if (input.length !== 0 && i === 0) {
+        let newList = [...container.children].filter((children) => {
+          return children.getElementsByTagName('li');
+        });
+        this.removeChildren(newList);
+      }
       li.insertAdjacentHTML('afterbegin', innerItem);
       container.appendChild(li);
     }
@@ -110,7 +113,6 @@ let weatherInfo = {
     let container = document.getElementById('next_5days');
     for (let i = 0; i < list.length; i++) {
       let day = this.datemodifiyer(list[i].dt_txt)[0];
-      // let time = this.datemodifiyer(list[i].dt_txt)[1];
       let icon = list[i].weather[0].icon;
       let iconImg = `http://openweathermap.org/img/wn/${icon}@2x.png`;
       let temp = list[i].main.temp;
@@ -123,9 +125,21 @@ let weatherInfo = {
         minTemp,
         maxTemp
       );
+      let input = document.getElementById('autocomplete').value;
+      if (input.length !== 0 && i === 0) {
+        let newList = [...container.children].filter((children) => {
+          return children.getElementsByTagName('li');
+        });
+        this.removeChildren(newList);
+      }
       let li = document.createElement('li');
       li.insertAdjacentHTML('afterbegin', innerItem);
       container.appendChild(li);
+    }
+  },
+  removeChildren: function (children) {
+    for (let i = 0; i < children.length; i++) {
+      children[i].remove();
     }
   },
   innerContent5Days: function (day, icon, temp, min, max) {
@@ -140,14 +154,14 @@ let weatherInfo = {
     return innerItem;
   },
 };
-weatherInfo.getWeatherInfo();
 
-/////////////////////////////////////////////////////////
+weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
+
+//////////////////////////////////////////////////////////
 let searchedCity;
-let googleChosenCity = 'Vancouver';
-let autocomplete;
 
 // get lat and lng
+let autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById('autocomplete'),
@@ -157,8 +171,6 @@ function initAutocomplete() {
   );
   autocomplete.addListener('place_changed', onPlaceChanged);
 }
-/////////////////////////////////////////////////////////
-
 async function onPlaceChanged() {
   let place = autocomplete.getPlace();
 
@@ -172,10 +184,10 @@ async function onPlaceChanged() {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}`
       );
-      googleChosenCity = await response.json();
+      const googleChosenCity = await response.json();
       searchedCity = place.name;
-      console.log('success', searchedCity);
-      // weatherInfo.getWeatherInfo(googleChosenCity.name);
+      // console.log('success', searchedCity);
+      weatherInfo.getWeatherInfo(googleChosenCity.name);
     } catch (err) {
       console.log('err', err);
       return err;
@@ -184,5 +196,4 @@ async function onPlaceChanged() {
 }
 
 showDropdown();
-
 getSelectedData();
