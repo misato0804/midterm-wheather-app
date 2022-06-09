@@ -1,7 +1,7 @@
-// import WEATHER_API_KEY from '../apikey.js';
+// import config from '../apikey.js';
 
 // let weatherInfo = {
-//   myKey: WEATHER_API_KEY,
+//   myKey: config.wheatherApi,
 //   getWeatherInfo: async function (city) {
 //     const res = await fetch(
 //       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`

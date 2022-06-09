@@ -1,17 +1,55 @@
 const WEATHER_API_KEY = config.wheatherApi;
-let searchedCity;
 
-// get lat and lng
-let autocomplete;
-function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('autocomplete'),
-    {
-      types: ['(cities)'],
+const btn = document.getElementsByClassName('btn')[0];
+const selecetBox = document.getElementById('favoriteCities');
+
+//return a favorite city from droppdown
+const getSelectedData = () => {
+  var element = document.getElementById('favoriteCities');
+  var cityName = element.options[element.selectedIndex].text;
+  // console.log(cityName);
+  return cityName;
+};
+
+//showing favorite cities dropdown
+const showDropdown = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i) !== 'weblioObjFlg') {
+      const option = document.createElement('option');
+      option.value = localStorage.key(i);
+      option.text = localStorage.key(i);
+      selecetBox.add(option);
     }
-  );
-  autocomplete.addListener('place_changed', onPlaceChanged);
-}
+  }
+};
+
+//add favorite city data in localStrage and selectbox
+const addFavoriteCities = (selectedCity) => {
+  if (localStorage.getItem(selectedCity) !== null) {
+    localStorage.removeItem(selectedCity, selectedCity);
+    for (var i = 0; i < selecetBox.length; i++) {
+      if (selecetBox.options[i].value == selectedCity) {
+        selecetBox.remove(i);
+      }
+    }
+  } else {
+    if (selectedCity !== undefined) {
+      localStorage.setItem(selectedCity, selectedCity);
+      const option = document.createElement('option');
+      option.value = selectedCity;
+      option.text = selectedCity;
+      selecetBox.add(option);
+    }
+  }
+};
+
+selecetBox.onchange = () => {
+  getSelectedData();
+};
+
+btn.addEventListener('click', () => {
+  addFavoriteCities(searchedCity);
+});
 
 // get placeInfo;
 let localData;
@@ -105,6 +143,22 @@ let weatherInfo = {
 weatherInfo.getWeatherInfo();
 
 /////////////////////////////////////////////////////////
+let searchedCity;
+let googleChosenCity = 'Vancouver';
+let autocomplete;
+
+// get lat and lng
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById('autocomplete'),
+    {
+      types: ['(cities)'],
+    }
+  );
+  autocomplete.addListener('place_changed', onPlaceChanged);
+}
+/////////////////////////////////////////////////////////
+
 async function onPlaceChanged() {
   let place = autocomplete.getPlace();
 
@@ -118,10 +172,10 @@ async function onPlaceChanged() {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}`
       );
-      const googleChosenCity = await response.json();
+      googleChosenCity = await response.json();
       searchedCity = place.name;
-      // console.log('success', searchedCity);
-      weatherInfo.getWeatherInfo(googleChosenCity.name);
+      console.log('success', searchedCity);
+      // weatherInfo.getWeatherInfo(googleChosenCity.name);
     } catch (err) {
       console.log('err', err);
       return err;
@@ -129,40 +183,6 @@ async function onPlaceChanged() {
   }
 }
 
-const btn = document.getElementsByClassName('btn')[0];
-const selecetBox = document.getElementById('favoriteCities');
-
-//add favorite city data in localStrage and selectbox
-const addFavoriteCities = (selectedCity) => {
-  if (localStorage.getItem(selectedCity) !== null) {
-    localStorage.removeItem(selectedCity, selectedCity);
-    for (var i = 0; i < selecetBox.length; i++) {
-      if (selecetBox.options[i].value == selectedCity) {
-        selecetBox.remove(i);
-      }
-    }
-  } else {
-    localStorage.setItem(selectedCity, selectedCity);
-    const option = document.createElement('option');
-    option.value = selectedCity;
-    option.text = selectedCity;
-    selecetBox.add(option);
-  }
-};
-
-const showDropdown = () => {
-  for (let i = 1; i < localStorage.length; i++) {
-    if (localStorage.key(i) !== 'weblioObjFlg') {
-      const option = document.createElement('option');
-      option.value = localStorage.key(i);
-      option.text = localStorage.key(i);
-      selecetBox.add(option);
-    }
-  }
-};
-
 showDropdown();
 
-btn.addEventListener('click', () => {
-  addFavoriteCities(searchedCity);
-});
+getSelectedData();
