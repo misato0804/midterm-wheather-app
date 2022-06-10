@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather App</title>
   <link rel="stylesheet" href="./css/index.css">
-
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places">
+  </script>
 </head>
 
 <body>
@@ -20,8 +22,11 @@
 
   <div class="container">
     <div class="current-info">
+
       <div class="others" id="current-weather-items">
-        <button class="btn">favorite</button>
+        <div id="favorite">
+          <img class="btn" src="star.png" alt="star" width="50px">
+        </div>
         <div class="date-item" id="date">
           WEATHER LOCATION
         </div>
@@ -44,6 +49,7 @@
     </div>
   </div>
   </div>
+
   <div class="place-container">
     <div id="time-zone" class="time-zone">North America / Vancouver</div>
     <div id="country" class="time-zone country">CA</div>
@@ -53,10 +59,10 @@
     <div id="every_3hours" class="every_3hours"></div>
   </section>
 
-  <script type="text/javascript" src="apikey.js"></script>
-  <script src="./js/index.js"></script>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places&callback=initAutocomplete"></script>
+  <script type='module' src="./apikey.js"></script>
+  <script type='module' src="./js/index.js"></script>
+  <script type='module' src="./js/hoursAndDays.js"></script>
+  <script type='module' src="./js/currentWheather.js"></script>
+  <script type='module' src="./js/showDropdown.js"></script>
 </body>
-
 </html>
