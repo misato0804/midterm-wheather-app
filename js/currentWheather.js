@@ -1,14 +1,12 @@
 // here is current whether
+import { selecetBox } from './index.js';
 
 const getSelectedData = () => {
   let element = document.getElementById('favoriteCities');
   let cityName = element.options[element.selectedIndex].text;
-  // console.log(cityName);
   return cityName;
 };
 
 selecetBox.onchange = () => {
   getSelectedData();
 };
-
-// console.log(searchedCity);

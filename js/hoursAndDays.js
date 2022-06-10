@@ -1,3 +1,6 @@
+import config from '../apikey.js';
+const WEATHER_API_KEY = config.wheatherApi;
+
 // get placeInfo;
 let localData;
 let data;
@@ -103,3 +106,5 @@ let weatherInfo = {
 };
 
 weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
+
+export { weatherInfo };

@@ -1,3 +1,6 @@
+import config from '../apikey.js';
+import { weatherInfo } from './hoursAndDays.js';
+
 const WEATHER_API_KEY = config.wheatherApi;
 
 const favoriteBtn = document.getElementsByClassName('btn')[0];
@@ -39,6 +42,7 @@ function initAutocomplete() {
   );
   autocomplete.addListener('place_changed', onPlaceChanged);
 }
+initAutocomplete();
 
 async function onPlaceChanged() {
   let place = autocomplete.getPlace();
@@ -55,7 +59,6 @@ async function onPlaceChanged() {
       );
       const googleChosenCity = await response.json();
       searchedCity = place.name;
-      // console.log('success', searchedCity);
       weatherInfo.getWeatherInfo(googleChosenCity.name);
       return searchedCity;
     } catch (err) {
@@ -64,3 +67,5 @@ async function onPlaceChanged() {
     }
   }
 }
+
+export { selecetBox };
