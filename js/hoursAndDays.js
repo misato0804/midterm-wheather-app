@@ -7,19 +7,27 @@ let data;
 let weatherInfo = {
   myKey: WEATHER_API_KEY,
   defaultCity: 'Vancouver',
+  inputCity: function () {
+    let inputCity = document.getElementById('autocomplete');
+    return inputCity;
+  },
   getWeatherInfo: async function (city) {
+    data = await this.getData(city);
+    this.showData(data);
+    this.showTimezone(data);
+    this.change3HoursDsiplay(data);
+  },
+  getData: async function (city) {
     const res = await fetch(
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
-    this.showData(data);
+    return data;
   },
   showData: function (data) {
     const { list } = data;
     let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
-    //3hoursList
     this.every3HoursList(list);
-    //next5days
     this.next5daysList(next5DaysData);
   },
   every3HoursList: function (list) {
@@ -83,7 +91,9 @@ let weatherInfo = {
         this.removeChildren(newList);
       }
       let li = document.createElement('li');
-      li.insertAdjacentHTML('afterbegin', innerItem);
+      li.setAttribute('class', 'next5days_card');
+      li.setAttribute('id', `${day}`);
+      li.insertAdjacentHTML('beforeend', innerItem);
       container.appendChild(li);
     }
   },
@@ -95,16 +105,58 @@ let weatherInfo = {
   innerContent5Days: function (day, icon, temp, min, max) {
     let innerItem = `
         <div class='item_container'>
-            <h4>${day}</h4>
+            <p>${day}</p>
             <img src=${icon}>
-            <h4>${temp}</h4>
-            <h4><span>${min}℃</span>/<span>${max}℃</span></h4>
+            <p>${temp}</p>
+            <p><span>${min}℃</span>/<span>${max}℃</span></p>
         </div>
         `;
     return innerItem;
   },
+  showTimezone: function (data) {
+    let timezone = document.getElementById('time-zone');
+    let countryName = document.getElementById('country');
+    const { city } = data;
+    let cityName = city.name;
+    let country = city.country;
+    timezone.innerText = `${cityName}`;
+    countryName.innerText = `${country}`;
+  },
+  change3HoursDsiplay: function (data) {
+    const { list } = data;
+    const options = document.querySelectorAll('.next5days_card');
+    const changeData = document.getElementById('every_3hours');
+    const clickedItem = (elm) => {
+      const parent = elm.parentNode;
+      const child_nodes_count = parent.childElementCount;
+      for (var i = 0; i < child_nodes_count; i++) {
+        const item = parent.children[i];
+        item.classList.remove('active_data_js');
+      }
+      elm.classList.add('active_data_js');
+    };
+    let abstractData = (list, date) => {
+      let newList = [];
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].dt_txt.includes(date)) {
+          newList.push(list[i]);
+        }
+      }
+      return newList;
+    };
+    let newChild = (list) => this.every3HoursList(list);
+    options.forEach(function (elm) {
+      elm.addEventListener('click', function () {
+        clickedItem(this); //activedate付与
+        let day = elm.id;
+        let newList = abstractData(list, day);
+        changeData.childNodes.forEach(function (item) {
+          item.style.display = 'none';
+        });
+        newChild(newList);
+      });
+    });
+  },
 };
-
-weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
 
 export { weatherInfo };
