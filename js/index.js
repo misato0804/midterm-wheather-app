@@ -9,10 +9,10 @@ const selecetBox = document.getElementById('favoriteCities');
 const getFavoriteStatus = (selectedCity) => {
   const favoriteCont = document.getElementById('favorite');
   if (localStorage.getItem(selectedCity)) {
-    btn.src = 'starColored' + '.png';
+    btn.src = './images/starColored' + '.png';
     favoriteCont.btn;
   } else {
-    btn.src = 'star' + '.png';
+    btn.src = './images/star' + '.png';
     favoriteCont.btn;
   }
 };
