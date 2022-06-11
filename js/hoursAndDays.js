@@ -2,7 +2,6 @@ import config from '../apikey.js';
 const WEATHER_API_KEY = config.wheatherApi;
 
 // get placeInfo;
-let localData;
 let data;
 let weatherInfo = {
   myKey: WEATHER_API_KEY,
@@ -26,7 +25,7 @@ let weatherInfo = {
   },
   showData: function (data) {
     const { list } = data;
-    let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
+    let next5DaysData = [list[0], list[8], list[16], list[25], list[39]];
     this.every3HoursList(list);
     this.next5daysList(next5DaysData);
   },
