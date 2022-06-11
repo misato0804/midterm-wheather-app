@@ -14,21 +14,28 @@
 
 <body>
   <div class="input">
-    <select name="favoriteCities" id="favoriteCities">
-      <option value="default">Favorite cities</option>
-    </select>
-    <input type="text" id="autocomplete" placeholder="Search city"/>
+    <div>
+      <select name="favoriteCities" id="favoriteCities">
+        <option value="default">Favorite cities</option>
+      </select>
+    </div>
+    <div>
+      <input type="text" id="autocomplete" placeholder="Search city"/>
+    </div>
   </div>
 
   <div class="container">
     <div class="current-info">
 
       <div class="others" id="current-weather-items">
-        <div id="favorite">
-          <img class="btn" src="star.png" alt="star" width="50px">
-        </div>
+
         <div class="date-item" id="date">
-          WEATHER LOCATION
+          <div>
+            WEATHER LOCATION
+          </div>
+          <div id="favorite">
+            <img class="btn" src="star.png" alt="star" width="50px">
+        </div>
         </div>
         <div class="weater-itme">
           <h1 class="name"></h1>
