@@ -1,4 +1,4 @@
-@forward './misato' ;
+@forward './misato';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap');
 
 * {
@@ -57,39 +57,39 @@ h2 {
 
 //Body
 @media only screen and (min-width: 700px) {
-.container {
-  // text-align: center;
-  font-size: 1.5rem;
-  font-weight: 100;
-  padding: 30px 70px;
-  color: #fbf3f2;
-}
-.current-info .others {
-  display: flex;
-  flex-direction: column;
-  padding: 3rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(4px);
-  // justify-content: space-between;
-  // flex-wrap: wrap;
-}
-
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.date-item {
-  //TITLE WEATHER LOCATION
-  font-size: 4rem;
-  display: flex;
-
-  #favorite {
-    padding-left: 3vw;
+  .container {
+    // text-align: center;
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 30px 70px;
+    color: #fbf3f2;
   }
-}
+  .current-info .others {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .date-item {
+    //TITLE WEATHER LOCATION
+    font-size: 4rem;
+    display: flex;
+
+    #favorite {
+      padding-left: 3vw;
+    }
+  }
 }
 
 .place-container {
@@ -99,15 +99,13 @@ h2 {
   color: #fa991c;
 
   .time-zone {
-      font-weight: 300;
-      color: #fa991c;
-    }
-
-  .country {
-      font-size: 1rem;
-    }
+    font-weight: 300;
+    color: #fa991c;
   }
 
+  .country {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 768px) {

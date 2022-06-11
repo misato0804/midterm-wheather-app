@@ -74,32 +74,32 @@ async function onPlaceChanged() {
       searchedCity = place.name;
       getFavoriteStatus(searchedCity);
       weatherInfo.getWeatherInfo(googleChosenCity.name);
-//////////// current location ////////////
-       var weatherLocation = document.getElementById('date');
-       console.log(weatherLocation)
-       weatherLocation.innerText = googleChosenCity.name; 
-    /// description
-       var description = document.getElementById('description');
-       console.log(weatherLocation)
-       description.innerText = googleChosenCity.weather[0].main;
-     /// temperature 
-       var temperature = document.getElementById('temperature');
-       console.log(weatherLocation)
-       temperature.innerText = googleChosenCity.main.temp;
+      //////////// current location ////////////
+      let weatherLocation = document.getElementById('date');
+      // console.log(weatherLocation);
+      weatherLocation.innerText = googleChosenCity.name;
+      /// description
+      let description = document.getElementById('description');
+      // console.log(weatherLocation);
+      description.innerText = googleChosenCity.weather[0].main;
+      /// temperature
+      let temperature = document.getElementById('temperature');
+      // console.log(weatherLocation);
+      temperature.innerText = googleChosenCity.main.temp;
 
-    let icon = googleChosenCity.weather[0].icon;
-    let iconImgPath = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-    let createImg = document.createElement('img')
-    console.log(iconImgPath, icon);
-    createImg.src = iconImgPath;
-    let container = document.getElementById('weather-itme');
-      container.appendChild(createImg)
+      let icon = googleChosenCity.weather[0].icon;
+      let iconImgPath = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+      let createImg = document.createElement('img');
+      // console.log(iconImgPath, icon);
+      createImg.src = iconImgPath;
+      let container = document.getElementById('weather-itme');
+      container.appendChild(createImg);
     } catch (err) {
       console.log('err', err);
       return err;
     }
 
-//////// weather icon
+    //////// weather icon
     //     let weatherLocation = {
     //   // Done: const WEATHER_API_KEY = config.wheatherApi;
     //   fetchWeather: function (city) {
@@ -107,7 +107,6 @@ async function onPlaceChanged() {
 
     // }
   }
-  
 }
 getFavoriteStatus(searchedCity);
 weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
