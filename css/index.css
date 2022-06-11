@@ -1,53 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap");
-.future-weather {
-  margin: 0 auto;
-  width: 90vw;
-}
-
-.every_3hours {
-  height: 30%;
-  background-color: rgba(255, 255, 255, 0.4);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-  display: flex;
-  overflow-x: scroll;
-  margin: 0;
-  padding: 0;
-}
-.every_3hours li {
-  list-style: none;
-  padding: 15px;
-  color: #032539;
-  font-size: 0.7rem;
-  text-align: center;
-}
-
-.next_5days {
-  width: 100%;
-  height: 25%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 20px;
-}
-.next_5days * {
-  color: #032539;
-}
-.next_5days li {
-  background-color: rgba(255, 255, 255, 0.4);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-  list-style: none;
-  padding: 15px;
-  text-align: center;
-  font-size: 0.7rem;
-}
-
+@forward './misato';
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif, Arial, Helvetica;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif, Arial, Helvetica;
 }
 
 body {
@@ -57,6 +15,16 @@ body {
   background-color: #032539;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
 .input {
   font-size: 2rem;
   text-align: end;
@@ -64,7 +32,7 @@ body {
   margin: 1rem;
 }
 
-input[type=text] {
+input[type='text'] {
   height: 2.6rem;
   width: 20rem;
   background-color: #fbf3f2;
@@ -74,7 +42,7 @@ input[type=text] {
   border-radius: 5px;
 }
 
-input[type=submit] {
+input[type='submit'] {
   height: 2.6rem;
   width: 6rem;
   background-color: #032539;
@@ -85,30 +53,39 @@ input[type=submit] {
   border-radius: 5px;
 }
 
-.container {
-  font-size: 1.5rem;
-  font-weight: 100;
-  padding: 30px 70px;
-  color: #fbf3f2;
-}
-
-.current-info .others {
-  display: flex;
-  flex-direction: column;
-  padding: 3rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-}
-
-.date-container {
-  font-weight: 100;
-}
-
-.date-item {
-  font-size: 4rem;
+@media only screen and (min-width: 700px) {
+  .container {
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 30px 70px;
+    color: #fbf3f2;
+  }
+  .current-info .others {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+  }
+  .flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .date-item {
+    font-size: 4rem;
+  }
 }
 
 .place-container {
@@ -117,10 +94,13 @@ input[type=submit] {
   font-size: 1rem;
   color: #fa991c;
 }
-.place-container time-zone {
-  font-weight: 100;
+
+.place-container .time-zone {
+  font-weight: 300;
   color: #fa991c;
 }
-.place-container time-zonecountry {
-  font-size: 0.5rem;
-}/*# sourceMappingURL=index.css.map */
+
+.place-container .country {
+  font-size: 1rem;
+}
+/*# sourceMappingURL=index.css.map */
