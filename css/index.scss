@@ -1,4 +1,4 @@
-@forward './misato';
+@forward './misato' ;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap');
 
 * {
@@ -13,6 +13,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #032539;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
 }
 
 .input {
@@ -45,6 +55,7 @@ input[type='submit'] {
 }
 
 //Body
+@media only screen and (min-width: 700px) {
 .container {
   // text-align: center;
   font-size: 1.5rem;
@@ -64,13 +75,15 @@ input[type='submit'] {
   // flex-wrap: wrap;
 }
 
-.date-container {
-  font-weight: 100;
+.flex {
+  display: flex;
+  align-items: center;
 }
 
 .date-item {
   //TITLE WEATHER LOCATION
   font-size: 4rem;
+}
 }
 
 .place-container {
@@ -79,12 +92,12 @@ input[type='submit'] {
   font-size: 1rem;
   color: #fa991c;
 
-  time-zone {
-    font-weight: 100;
-    color: #fa991c;
+  .time-zone {
+      font-weight: 300;
+      color: #fa991c;
+    }
 
-    &country {
-      font-size: 0.5rem;
+  .country {
+      font-size: 1rem;
     }
   }
-}
