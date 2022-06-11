@@ -1,50 +1,21 @@
 import config from '../apikey.js';
+import { getFavoriteStatus } from './getFavoriteStatus.js';
+import { addFavoriteCities } from './addFavoriteCities.js';
 import { weatherInfo } from './hoursAndDays.js';
+import { showDropdown } from './showDropdown.js';
 
 const WEATHER_API_KEY = config.wheatherApi;
 const btn = document.getElementsByClassName('btn')[0];
-const selecetBox = document.getElementById('favoriteCities');
+let searchedCity = 'Vancouver';
+let autocomplete;
 
-//favorite star toggle
-const getFavoriteStatus = (selectedCity) => {
-  const favoriteCont = document.getElementById('favorite');
-  if (localStorage.getItem(selectedCity)) {
-    btn.src = './images/starColored' + '.png';
-    favoriteCont.btn;
-  } else {
-    btn.src = './images/star' + '.png';
-    favoriteCont.btn;
-  }
-};
-
-//add favorite city data in localStrage and selectbox
-const addFavoriteCities = (selectedCity) => {
-  if (localStorage.getItem(selectedCity) !== null) {
-    localStorage.removeItem(selectedCity, selectedCity);
-    for (let i = 0; i < selecetBox.length; i++) {
-      if (selecetBox.options[i].value == selectedCity) {
-        selecetBox.remove(i);
-      }
-    }
-  } else {
-    if (selectedCity !== undefined) {
-      localStorage.setItem(selectedCity, selectedCity);
-      const option = document.createElement('option');
-      option.value = selectedCity;
-      option.text = selectedCity;
-      selecetBox.add(option);
-    }
-  }
-  getFavoriteStatus(selectedCity);
-};
+showDropdown();
 
 btn.addEventListener('click', () => {
   addFavoriteCities(searchedCity);
 });
 
 // get lat and lng
-let searchedCity = 'Vancouver';
-let autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById('autocomplete'),
@@ -58,7 +29,7 @@ initAutocomplete();
 
 //after getting geo data, returing the city data user searched
 async function onPlaceChanged() {
-  let place = autocomplete.getPlace();
+  const place = autocomplete.getPlace();
 
   if (!place.geometry) {
     document.getElementById('autocomplete').placeholder = 'Enter';
@@ -83,5 +54,3 @@ async function onPlaceChanged() {
 }
 getFavoriteStatus(searchedCity);
 weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
-
-export { selecetBox };

@@ -1,5 +1,5 @@
 // here is current whether
-import { selecetBox } from './index.js';
+const selecetBox = document.getElementById('favoriteCities');
 
 const getSelectedData = () => {
   let element = document.getElementById('favoriteCities');
