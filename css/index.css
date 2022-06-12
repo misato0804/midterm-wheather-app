@@ -57,6 +57,16 @@ body {
   background-color: #032539;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
 .input {
   font-size: 2rem;
   margin: 2vw auto;
@@ -83,48 +93,50 @@ body {
   border-radius: 5px;
 }
 
-.container {
-  font-size: 1.5rem;
-  font-weight: 100;
-  padding: 30px 70px;
-  color: #fbf3f2;
-}
+@media only screen and (min-width: 700px) {
+  .container {
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 30px 70px;
+    color: #fbf3f2;
+  }
 
-.current-info .others {
-  display: flex;
-  flex-direction: column;
-  padding: 3rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-}
+  .current-info .others {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+  }
 
-.date-container {
-  font-weight: 100;
-}
+  .flex {
+    display: flex;
+    align-items: center;
+  }
 
-.date-item {
-  font-size: 4rem;
-  display: flex;
+  .date-item {
+    font-size: 4rem;
+    display: flex;
+  }
+  .date-item #favorite {
+    padding-left: 3vw;
+  }
 }
-.date-item #favorite {
-  padding-left: 3vw;
-}
-
 .place-container {
   text-align: end;
   padding-right: 70px;
   font-size: 1rem;
   color: #fa991c;
 }
-.place-container time-zone {
-  font-weight: 100;
+.place-container .time-zone {
+  font-weight: 300;
   color: #fa991c;
 }
-.place-container time-zonecountry {
-  font-size: 0.5rem;
+.place-container .country {
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {

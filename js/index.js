@@ -39,13 +39,30 @@ async function onPlaceChanged() {
 
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}&units=metric`
       );
       const googleChosenCity = await response.json();
+      //////////// current location ////////////
+      let weatherLocation = document.getElementById('date');
+      weatherLocation.innerText = googleChosenCity.name;
+      /// description
+      let description = document.getElementById('description');
+      description.innerText = googleChosenCity.weather[0].main;
+      /// temperature
+      let temperature = document.getElementById('temperature');
+      temperature.innerText = googleChosenCity.main.temp;
+
+      let icon = googleChosenCity.weather[0].icon;
+      let iconImgPath = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+      let createImg = document.createElement('img');
+
+      createImg.src = iconImgPath;
+      let container = document.getElementById('weather-itme');
+      container.appendChild(createImg);
+
       searchedCity = place.name;
       getFavoriteStatus(searchedCity);
       weatherInfo.getWeatherInfo(googleChosenCity.name);
-      // console.log('success', searchedCity);
     } catch (err) {
       console.log('err', err);
       return err;

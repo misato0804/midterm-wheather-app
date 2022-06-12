@@ -1,77 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather App</title>
-  <link rel="stylesheet" href="./css/index.css">
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places">
-  </script>
-</head>
-
-<body>
-  <div class="input">
-    <div>
-      <select name="favoriteCities" id="favoriteCities">
-        <option value="default">Favorite cities</option>
-      </select>
+  <body>
+    <div class="input">
+      <div>
+        <select name="favoriteCities" id="favoriteCities">
+          <option value="default">Favorite cities</option>
+        </select>
+      </div>
+      <div>
+        <input type="text" id="autocomplete" placeholder="Search city" />
+      </div>
     </div>
-    <div>
-      <input type="text" id="autocomplete" placeholder="Search city"/>
-    </div>
-  </div>
 
-  <div class="container">
-    <div class="current-info">
-
-      <div class="others" id="current-weather-items">
-
-        <div class="date-item" id="date">
-          <div>
-            WEATHER LOCATION
-          </div>
+    <div class="container">
+      <div class="current-info">
+        <div class="others" id="current-weather-items">
           <div id="favorite">
-            <img class="btn" src="./images/star.png" alt="star" width="50px">
-        </div>
-        </div>
-        <div class="weater-itme">
-          <h1 class="name"></h1>
-        </div>
-        <div class="weater-itme">
-          <div>Description :</div>
-          <h1 class="desc"></h1>
-          <p class="desc"></p>
-        </div>
-        <div class="weater-itme">
-          <div>Temperature :</div>
-          <p class="temp"> &#176; F</p>
-        </div>
-        <div class="weater-itme">
-          <img src="" alt="weather icon" class="w-icon">
+            <img class="btn" src="./images/star.png" alt="star" width="50px" />
+          </div>
+          <!-- name -->
+          <div class="date-item">
+            WEATHER LOCATION
+            <h1 id="date">in Vancouver</h1>
+          </div>
+          <!--icon -->
+          <div id="weather-itme" class="flex"></div>
+          <!-- desc -->
+          <div class="weather-itme">
+            <div>Description :</div>
+            <h2 class="desc" id="description"></h2>
+          </div>
+          <!-- temp -->
+          <div class="weather-itme">
+            <div>Temperature &#176;C :</div>
+            <h2 class="temp" id="temperature"></h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
 
-  <div class="place-container">
-    <div id="time-zone" class="time-zone">North America / Vancouver</div>
-    <div id="country" class="time-zone country">CA</div>
-  </div>
-  <section class="future-weather" id="future-weather">
-    <div id="next_5days" class="next_5days"></div>
-    <div id="every_3hours" class="every_3hours"></div>
-  </section>
+    <div class="place-container">
+      <div id="time-zone" class="time-zone">North America / Vancouver</div>
+      <div id="country" class="time-zone country">CA</div>
+    </div>
+    <section class="future-weather" id="future-weather">
+      <div id="next_5days" class="next_5days"></div>
+      <div id="every_3hours" class="every_3hours"></div>
+    </section>
 
-  <script type='module' src="./apikey.js"></script>
-  <script type='module' src="./js/index.js"></script>
-  <script type='module' src="./js/hoursAndDays.js"></script>
-  <script type='module' src="./js/currentWheather.js"></script>
-  <script type='module' src="./js/showDropdown.js"></script>
-  <script type='module' src="./js/getFavoriteStatus.js"></script>
-  <script type='module' src="./js/addFavoriteCities.js"></script>
-</body>
+    <script type="module" src="./apikey.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/hoursAndDays.js"></script>
+    <!-- <script type="module" src="./js/currentWheather.js"></script> -->
+    <script type="module" src="./js/showDropdown.js"></script>
+    <script type="module" src="./js/getFavoriteStatus.js"></script>
+    <script type="module" src="./js/addFavoriteCities.js"></script>
+  </body>
 </html>
