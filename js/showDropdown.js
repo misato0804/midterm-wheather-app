@@ -1,5 +1,5 @@
 // showing favorite cities dropdown
-import { selecetBox } from './index.js';
+const selecetBox = document.getElementById('favoriteCities');
 
 const showDropdown = () => {
   for (let i = 0; i < localStorage.length; i++) {
@@ -15,4 +15,4 @@ const showDropdown = () => {
   }
 };
 
-showDropdown();
+export { showDropdown };

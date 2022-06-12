@@ -15,6 +15,16 @@ body {
   background-color: #032539;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
 .input {
   font-size: 2rem;
   margin: 2vw auto;
@@ -46,36 +56,39 @@ body {
 }
 
 //Body
-.container {
-  // text-align: center;
-  font-size: 1.5rem;
-  font-weight: 100;
-  padding: 30px 70px;
-  color: #fbf3f2;
-}
-.current-info .others {
-  display: flex;
-  flex-direction: column;
-  padding: 3rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(4px);
-  // justify-content: space-between;
-  // flex-wrap: wrap;
-}
+@media only screen and (min-width: 700px) {
+  .container {
+    // text-align: center;
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 30px 70px;
+    color: #fbf3f2;
+  }
+  .current-info .others {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+  }
 
-.date-container {
-  font-weight: 100;
-}
+  .flex {
+    display: flex;
+    align-items: center;
+  }
 
-.date-item {
-  //TITLE WEATHER LOCATION
-  font-size: 4rem;
-  display: flex;
+  .date-item {
+    //TITLE WEATHER LOCATION
+    font-size: 4rem;
+    display: flex;
 
-  #favorite {
-    padding-left: 3vw;
+    #favorite {
+      padding-left: 3vw;
+    }
   }
 }
 
@@ -85,13 +98,13 @@ body {
   font-size: 1rem;
   color: #fa991c;
 
-  time-zone {
-    font-weight: 100;
+  .time-zone {
+    font-weight: 300;
     color: #fa991c;
+  }
 
-    &country {
-      font-size: 0.5rem;
-    }
+  .country {
+    font-size: 1rem;
   }
 }
 
@@ -104,7 +117,6 @@ body {
     width: 90vw;
 
     select {
-      // background-color: #fbf3f2;
       color: #fa991c;
       background-color: #032539;
       height: 2rem;
