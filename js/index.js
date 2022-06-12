@@ -2,9 +2,20 @@ import config from '../apikey.js';
 import { weatherInfo } from './hoursAndDays.js';
 
 const WEATHER_API_KEY = config.wheatherApi;
-
-const favoriteBtn = document.getElementsByClassName('btn')[0];
+const btn = document.getElementsByClassName('btn')[0];
 const selecetBox = document.getElementById('favoriteCities');
+
+//favorite star toggle
+const getFavoriteStatus = (selectedCity) => {
+  const favoriteCont = document.getElementById('favorite');
+  if (localStorage.getItem(selectedCity)) {
+    btn.src = 'starColored' + '.png';
+    favoriteCont.btn;
+  } else {
+    btn.src = 'star' + '.png';
+    favoriteCont.btn;
+  }
+};
 
 //add favorite city data in localStrage and selectbox
 const addFavoriteCities = (selectedCity) => {
@@ -24,13 +35,15 @@ const addFavoriteCities = (selectedCity) => {
       selecetBox.add(option);
     }
   }
+  getFavoriteStatus(selectedCity);
 };
 
-favoriteBtn.addEventListener('click', () => {
+btn.addEventListener('click', () => {
   addFavoriteCities(searchedCity);
 });
 
-let searchedCity;
+// get lat and lng
+let searchedCity = 'Vancouver';
 let autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
@@ -43,6 +56,7 @@ function initAutocomplete() {
 }
 initAutocomplete();
 
+//after getting geo data, returing the city data user searched
 async function onPlaceChanged() {
   let place = autocomplete.getPlace();
 
@@ -58,14 +72,16 @@ async function onPlaceChanged() {
       );
       const googleChosenCity = await response.json();
       searchedCity = place.name;
-      // weatherInfo.getWeatherInfo(googleChosenCity.name);
-      return searchedCity;
+      getFavoriteStatus(searchedCity);
+      weatherInfo.getWeatherInfo(googleChosenCity.name);
+      // console.log('success', searchedCity);
     } catch (err) {
       console.log('err', err);
       return err;
     }
   }
 }
+getFavoriteStatus(searchedCity);
+weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
 
 export { selecetBox };
-weatherInfo.getWeatherInfo(weatherInfo.defaultCity);

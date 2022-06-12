@@ -1,7 +1,6 @@
 import config from '../apikey.js';
 const WEATHER_API_KEY = config.wheatherApi;
 
-// get placeInfo;
 let data;
 let weatherInfo = {
   myKey: WEATHER_API_KEY,
@@ -12,6 +11,7 @@ let weatherInfo = {
   },
   getWeatherInfo: async function (city) {
     data = await this.getData(city);
+    // console.log(data);
     this.showData(data);
     this.showTimezone(data);
     this.change3HoursDsiplay(data);
@@ -25,7 +25,7 @@ let weatherInfo = {
   },
   showData: function (data) {
     const { list } = data;
-    let next5DaysData = [list[0], list[8], list[16], list[25], list[39]];
+    let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
     this.every3HoursList(list);
     this.next5daysList(next5DaysData);
   },
@@ -122,6 +122,7 @@ let weatherInfo = {
     countryName.innerText = `${country}`;
   },
   change3HoursDsiplay: function (data) {
+    // console.log(data);
     const { list } = data;
     const options = document.querySelectorAll('.next5days_card');
     const changeData = document.getElementById('every_3hours');
@@ -147,8 +148,10 @@ let weatherInfo = {
     options.forEach(function (elm) {
       elm.addEventListener('click', function () {
         clickedItem(this); //activedate付与
+        // console.log(elm.id);
         let day = elm.id;
         let newList = abstractData(list, day);
+        // console.log(newList);
         changeData.childNodes.forEach(function (item) {
           item.style.display = 'none';
         });
@@ -156,6 +159,23 @@ let weatherInfo = {
       });
     });
   },
+  // dayCalculator: function(list) {
+  //   console.log(list)
+  //   let new5dayList = [list[0]];
+  //   console.log(new5dayList)
+  //   let checkDate = new5dayList[0].dt_txt.slice(0, 10)
+  //   console.log(checkDate)
+  //   let n = list[10].dt_txt.slice(0, 10);
+  //   if(n === checkDate)
+  //     // new5dayList.forEach(item => {
+  //     //   let exitData = item.dt_txt.slice(0, 10);
+  //     //   if(exitData !== checkDate){
+  //     //     new5dayList.push(item);
+  //     //   }
+  //     // })
+  //   return new5dayList;
+  // }
 };
 
 export { weatherInfo };
+// str.substr( 開始位置, 文字数 )
