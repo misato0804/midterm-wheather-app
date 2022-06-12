@@ -1,50 +1,21 @@
 import config from '../apikey.js';
+import { getFavoriteStatus } from './getFavoriteStatus.js';
+import { addFavoriteCities } from './addFavoriteCities.js';
 import { weatherInfo } from './hoursAndDays.js';
+import { showDropdown } from './showDropdown.js';
 
 const WEATHER_API_KEY = config.wheatherApi;
 const btn = document.getElementsByClassName('btn')[0];
-const selecetBox = document.getElementById('favoriteCities');
+let searchedCity = 'Vancouver';
+let autocomplete;
 
-//favorite star toggle
-const getFavoriteStatus = (selectedCity) => {
-  const favoriteCont = document.getElementById('favorite');
-  if (localStorage.getItem(selectedCity)) {
-    btn.src = 'starColored' + '.png';
-    favoriteCont.btn;
-  } else {
-    btn.src = 'star' + '.png';
-    favoriteCont.btn;
-  }
-};
-
-//add favorite city data in localStrage and selectbox
-const addFavoriteCities = (selectedCity) => {
-  if (localStorage.getItem(selectedCity) !== null) {
-    localStorage.removeItem(selectedCity, selectedCity);
-    for (let i = 0; i < selecetBox.length; i++) {
-      if (selecetBox.options[i].value == selectedCity) {
-        selecetBox.remove(i);
-      }
-    }
-  } else {
-    if (selectedCity !== undefined) {
-      localStorage.setItem(selectedCity, selectedCity);
-      const option = document.createElement('option');
-      option.value = selectedCity;
-      option.text = selectedCity;
-      selecetBox.add(option);
-    }
-  }
-  getFavoriteStatus(selectedCity);
-};
+showDropdown();
 
 btn.addEventListener('click', () => {
   addFavoriteCities(searchedCity);
 });
 
 // get lat and lng
-let searchedCity = 'Vancouver';
-let autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById('autocomplete'),
@@ -58,7 +29,7 @@ initAutocomplete();
 
 //after getting geo data, returing the city data user searched
 async function onPlaceChanged() {
-  let place = autocomplete.getPlace();
+  const place = autocomplete.getPlace();
 
   if (!place.geometry) {
     document.getElementById('autocomplete').placeholder = 'Enter';
@@ -71,6 +42,24 @@ async function onPlaceChanged() {
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${WEATHER_API_KEY}&units=metric`
       );
       const googleChosenCity = await response.json();
+      //////////// current location ////////////
+      let weatherLocation = document.getElementById('date');
+      weatherLocation.innerText = googleChosenCity.name;
+      /// description
+      let description = document.getElementById('description');
+      description.innerText = googleChosenCity.weather[0].main;
+      /// temperature
+      let temperature = document.getElementById('temperature');
+      temperature.innerText = googleChosenCity.main.temp;
+
+      let icon = googleChosenCity.weather[0].icon;
+      let iconImgPath = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+      let createImg = document.createElement('img');
+
+      createImg.src = iconImgPath;
+      let container = document.getElementById('weather-itme');
+      container.appendChild(createImg);
+
       searchedCity = place.name;
       getFavoriteStatus(searchedCity);
       weatherInfo.getWeatherInfo(googleChosenCity.name);
@@ -110,5 +99,3 @@ async function onPlaceChanged() {
 }
 getFavoriteStatus(searchedCity);
 weatherInfo.getWeatherInfo(weatherInfo.defaultCity);
-
-export { selecetBox };
