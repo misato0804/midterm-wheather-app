@@ -20,7 +20,6 @@ let weatherInfo = {
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
-    console.log(data)
     return data;
   },
   getCurrentData: async function(city) {
@@ -31,7 +30,6 @@ let weatherInfo = {
   },
   showData: function (data) {
     const { list } = data;
-    console.log(this.dayCalculator(list));
     let next5DaysData = this.dayCalculator(list)
     this.every3HoursList(list);
     this.next5daysList(next5DaysData);
