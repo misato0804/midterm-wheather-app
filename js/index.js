@@ -1,4 +1,5 @@
 import config from '../apikey.js';
+
 import {getFavoriteStatus} from './getFavoriteStatus.js';
 import {addFavoriteCities} from './addFavoriteCities.js';
 import {weatherInfo} from './hoursAndDays.js';
@@ -57,10 +58,12 @@ async function onPlaceChanged() {
             console.log('err', err);
             return err;
         }
+
     }
 }
 
 function showFavCity() {
+
     favoriteCityItems.onchange = async function () {
         selectedCity = favoriteCityItems.value;
         let favoriteCityData = await weatherInfo.getCurrentData(selectedCity);
@@ -75,6 +78,7 @@ function showFavCity() {
         weatherInfo.showTimezone(favoriteCityEachData);
     }
 }
+
 
 
 getFavoriteStatus(searchedCity);

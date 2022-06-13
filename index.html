@@ -18,8 +18,41 @@
             <option value="default">Favorite cities</option>
         </select>
     </div>
+
     <div>
         <input type="text" id="autocomplete" placeholder="Search city"/>
+    <div class="container">
+      <div class="current-info">
+        <div class="others" id="current-weather-items">
+          <div id="favorite">
+            <img class="btn" src="./images/star.png" alt="star" width="50px" />
+          </div>
+          <!-- name -->
+          <div class="date-item">
+            WEATHER LOCATION
+            <h1 id="date">&nbsp;in Vancouver</h1>
+          </div>
+          <!--icon -->
+          <div class="flex">
+            <img src="#" id="weather-itme" style="visibility: hidden" />
+          </div>
+          <!-- desc -->
+          <div class="weather-itme">
+            <div>Description :</div>
+            <h2 class="desc" id="description"></h2>
+          </div>
+          <!-- temp -->
+          <div class="weather-itme">
+            <div>Temperature &#176;C :</div>
+            <h2
+              class="temp"
+              id="temperature"
+              style="display: inline-block"
+            ></h2>
+            <span style="font-size: 32px">℃</span>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 <section class="container">
