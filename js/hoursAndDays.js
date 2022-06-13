@@ -20,19 +20,20 @@ let weatherInfo = {
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
     return data;
   },
-  getCurrentData: async function(city) {
+  getCurrentData: async function (city) {
     const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.myKey}`    );
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.myKey}`
+    );
     const currentData = await res.json();
     return currentData;
   },
   showData: function (data) {
     const { list } = data;
-    console.log(this.dayCalculator(list));
-    let next5DaysData = this.dayCalculator(list)
+    // console.log(this.dayCalculator(list));
+    let next5DaysData = this.dayCalculator(list);
     this.every3HoursList(list);
     this.next5daysList(next5DaysData);
   },
@@ -163,15 +164,15 @@ let weatherInfo = {
       });
     });
   },
-  dayCalculator: function(list) {
+  dayCalculator: function (list) {
     let newList = [];
-    for(let i = 0; i < list.length; i++) {
-      if(i % 8 === 0) {
+    for (let i = 0; i < list.length; i++) {
+      if (i % 8 === 0) {
         newList.push(list[i]);
       }
     }
     return newList;
-  }
+  },
 };
 
 export { weatherInfo };
