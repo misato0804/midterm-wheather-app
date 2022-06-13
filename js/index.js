@@ -3,14 +3,14 @@ import { getFavoriteStatus } from './getFavoriteStatus.js';
 import { addFavoriteCities } from './addFavoriteCities.js';
 import { weatherInfo } from './hoursAndDays.js';
 import { showDropdown } from './showDropdown.js';
-import { showDefault} from './currentWheather.js';
+import { showDefault } from './currentWheather.js';
 
 const WEATHER_API_KEY = config.wheatherApi;
 const btn = document.getElementsByClassName('btn')[0];
 let searchedCity = 'Vancouver';
 let favoriteCityItems = document.querySelector('[name="favoriteCities"]');
 let selectedCity;
-let  newDate =  await weatherInfo.getCurrentData(searchedCity);
+let newDate = await weatherInfo.getCurrentData(searchedCity);
 let autocomplete;
 
 showDropdown();
@@ -47,11 +47,9 @@ async function onPlaceChanged() {
       );
       const googleChosenCity = await response.json();
       showDefault(googleChosenCity);
-      weatherInfo.getWeatherInfo(googleChosenCity.name)
+      weatherInfo.getWeatherInfo(googleChosenCity.name);
       searchedCity = place.name;
       getFavoriteStatus(searchedCity);
-
-
     } catch (err) {
       console.log('err', err);
       return err;
@@ -60,21 +58,20 @@ async function onPlaceChanged() {
 }
 
 function showFavCity() {
-  favoriteCityItems.onchange = async function() {
+  favoriteCityItems.onchange = async function () {
     selectedCity = favoriteCityItems.value;
-    let favoriteCityData = await  weatherInfo.getCurrentData(selectedCity);
-    let favoriteCityEachData = await  weatherInfo.getData(selectedCity);
+    let favoriteCityData = await weatherInfo.getCurrentData(selectedCity);
+    let favoriteCityEachData = await weatherInfo.getData(selectedCity);
     let removeParent = document.getElementById('next_5days');
     let removeParent2 = document.getElementById('every_3hours');
-    removeParent.innerHTML = "";
-    removeParent2.innerHTML ="";
+    removeParent.innerHTML = '';
+    removeParent2.innerHTML = '';
     showDefault(favoriteCityData);
     weatherInfo.showData(favoriteCityEachData);
     weatherInfo.showTimezone(favoriteCityEachData);
-  }
+    weatherInfo.change3HoursDsiplay(favoriteCityEachData);
+  };
 }
-
-
 
 getFavoriteStatus(searchedCity);
 showDefault(newDate);
