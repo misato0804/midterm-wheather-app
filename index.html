@@ -1,105 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="./css/index.css"/>
+    <link rel="stylesheet" href="./css/index.css" />
     <script
-            async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places"
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnadpo21sagolNDS2g8_0dmJc7YQ4DPk&libraries=places"
     ></script>
-</head>
-<body>
-<div class="input">
-    <div>
+  </head>
+  <body>
+    <div class="input">
+      <div>
         <select name="favoriteCities" id="favoriteCities">
-            <option value="default">Favorite cities</option>
+          <option value="default">Favorite cities</option>
         </select>
-    </div>
-
-    <div>
-        <input type="text" id="autocomplete" placeholder="Search city"/>
-    <div class="container">
-      <div class="current-info">
-        <div class="others" id="current-weather-items">
-          <div id="favorite">
-            <img class="btn" src="./images/star.png" alt="star" width="50px" />
-          </div>
-          <!-- name -->
-          <div class="date-item">
-            WEATHER LOCATION
-            <h1 id="date">&nbsp;in Vancouver</h1>
-          </div>
-          <!--icon -->
-          <div class="flex">
-            <img src="#" id="weather-itme" style="visibility: hidden" />
-          </div>
-          <!-- desc -->
-          <div class="weather-itme">
-            <div>Description :</div>
-            <h2 class="desc" id="description"></h2>
-          </div>
-          <!-- temp -->
-          <div class="weather-itme">
-            <div>Temperature &#176;C :</div>
-            <h2
-              class="temp"
-              id="temperature"
-              style="display: inline-block"
-            ></h2>
-            <span style="font-size: 32px">℃</span>
-          </div>
-        </div>
+      </div>
+      <div>
+        <input type="text" id="autocomplete" placeholder="Search city" />
       </div>
     </div>
-</div>
-<section class="container">
-    <span id="favorite"><img class="btn" src="./images/star.png" alt="star" width="50px"/></span>
-    <!-- name -->
-    <div class="weather-data-container">
+    <section class="container">
+      <span id="favorite"
+        ><img class="btn" src="./images/star.png" alt="star" width="50px"
+      /></span>
+      <!-- name -->
+      <div class="weather-data-container">
         <div class="date-item-left">
-            <h1>WEATHER LOCATION</h1>
-            <h1>in&nbsp;</h1>
-            <h2 id="date">Vancouver</h2>
+          <h1>WEATHER LOCATION</h1>
+          <h1>in&nbsp;</h1>
+          <h2 id="date">Vancouver</h2>
         </div>
         <!--icon -->
         <div class="date-item-right">
-            <div class="icon">
-                <img src="#" id="weather-itme" style="visibility:hidden" width="100px">
+          <div class="icon">
+            <img
+              src="#"
+              id="weather-itme"
+              style="visibility: hidden"
+              width="100px"
+            />
+          </div>
+          <!-- desc -->
+          <div class="weather-item-container">
+            <div class="weather-itme">
+              <h2>Description</h2>
+              <h2 class="desc" id="description"></h2>
             </div>
-            <!-- desc -->
-            <div class="weather-item-container">
-                <div class="weather-itme">
-                    <h2>Description</h2>
-                    <h2 class="desc" id="description"></h2>
-                </div>
-                <!-- temp -->
-                <div class="weather-itme">
-                    <h2>Temperature </h2>
-                    <h2 class="temp" id="temperature" style="display: inline-block"></h2>
-                    <h2 style="display:inline-block"> &#176;C </h2>
-                </div>
+            <!-- temp -->
+            <div class="weather-itme">
+              <h2>Temperature</h2>
+              <h2
+                class="temp"
+                id="temperature"
+                style="display: inline-block"
+              ></h2>
+              <h2 style="display: inline-block">&#176;C</h2>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
+    <div class="place-container">
+      <h2 id="time-zone" class="time-zone">North America / Vancouver</h2>
+      <h2>&nbsp;/&nbsp;</h2>
+      <h2 id="country" class="time-zone country">CA</h2>
     </div>
-</section>
-<div class="place-container">
-    <h2 id="time-zone" class="time-zone">North America / Vancouver</h2>
-    <h2>&nbsp;/&nbsp;</h2>
-    <h2 id="country" class="time-zone country">CA</h2>
-</div>
-<section class="future-weather" id="future-weather">
-    <div id="next_5days" class="next_5days"></div>
-    <div id="every_3hours" class="every_3hours"></div>
-</section>
-<script type="module" src="./apikey.js"></script>
-<script type="module" src="./js/index.js"></script>
-<script type="module" src="./js/hoursAndDays.js"></script>
-<!-- <script type="module" src="./js/currentWheather.js"></script> -->
-<script type="module" src="./js/showDropdown.js"></script>
-<script type="module" src="./js/getFavoriteStatus.js"></script>
-<script type="module" src="./js/addFavoriteCities.js"></script>
-</body>
+    <section class="future-weather" id="future-weather">
+      <div id="next_5days" class="next_5days"></div>
+      <div id="every_3hours" class="every_3hours"></div>
+    </section>
+    <script type="module" src="./apikey.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/hoursAndDays.js"></script>
+    <!-- <script type="module" src="./js/currentWheather.js"></script> -->
+    <script type="module" src="./js/showDropdown.js"></script>
+    <script type="module" src="./js/getFavoriteStatus.js"></script>
+    <script type="module" src="./js/addFavoriteCities.js"></script>
+  </body>
 </html>

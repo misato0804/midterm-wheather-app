@@ -1,82 +1,82 @@
 .future-weather {
+  margin: 0 auto;
+
+  .next_5days {
+    width: 90vw;
     margin: 0 auto;
+    gap: 0.5rem;
+    cursor: pointer;
 
-    .next_5days {
-        width: 90vw;
-        margin: 0 auto;
-        gap: 0.5rem;
-        cursor: pointer;
-
-        li {
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
-            list-style: none;
-            text-align: center;
-            .item_container  *{
-                color: #032539;
-            }
-        }
+    li {
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+      list-style: none;
+      text-align: center;
+      .item_container * {
+        color: #032539;
+      }
     }
+  }
 
-    .every_3hours {
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.4);
-        width: 90vw;
-        display: flex;
-        overflow-x: scroll;
-        margin: 0;
-        margin: 0 auto;
-        margin-top: 0.5rem;
-        li {
-            backdrop-filter: blur(4px);
-            list-style: none;
-            text-align: center;
-            .el_container  *{
-                color: #032539;
-            }
-        }
+  .every_3hours {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 90vw;
+    display: flex;
+    overflow-x: scroll;
+    margin: 0;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    li {
+      backdrop-filter: blur(4px);
+      list-style: none;
+      text-align: center;
+      .el_container * {
+        color: #032539;
+      }
     }
+  }
 }
 
 @media (max-width: 478px) {
-    .next_5days {
-        width: 90vw;
-        li {
-            margin: 0.5rem;
-            .item_container {
-                display:flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-        }
+  .next_5days {
+    width: 90vw;
+    li {
+      margin: 0.5rem;
+      .item_container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
     }
+  }
 }
 
 @media (min-width: 478px) and (max-width: 768px) {
-    .next_5days {
-        width: 90vw;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+  .next_5days {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .every_3hours {
+    width: 90vw;
+    li {
+      margin: 0 1rem;
     }
-    .every_3hours {
-        width: 90vw;
-        li {
-            margin: 0 1rem;
-        }
-    }
+  }
 }
 
 @media (min-width: 769px) {
-    .next_5days {
-        width: 90vw;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  .next_5days {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .every_3hours {
+    width: 90vw;
+    li {
+      margin: 0 1rem;
     }
-    .every_3hours {
-        width: 90vw;
-        li {
-            margin: 0 1rem;
-        }
-    }
+  }
 }
