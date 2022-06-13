@@ -11,7 +11,6 @@ let weatherInfo = {
   },
   getWeatherInfo: async function (city) {
     data = await this.getData(city);
-    // console.log(data);
     this.showData(data);
     this.showTimezone(data);
     this.change3HoursDsiplay(data);
@@ -21,11 +20,19 @@ let weatherInfo = {
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.myKey}`
     );
     const data = await res.json();
+    console.log(data)
     return data;
+  },
+  getCurrentData: async function(city) {
+    const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.myKey}`    );
+    const currentData = await res.json();
+    return currentData;
   },
   showData: function (data) {
     const { list } = data;
-    let next5DaysData = [list[8], list[16], list[24], list[32], list[39]];
+    console.log(this.dayCalculator(list));
+    let next5DaysData = this.dayCalculator(list)
     this.every3HoursList(list);
     this.next5daysList(next5DaysData);
   },
@@ -106,7 +113,7 @@ let weatherInfo = {
         <div class='item_container'>
             <p>${day}</p>
             <img src=${icon}>
-            <p>${temp}</p>
+            <p>${temp}℃</p>
             <p><span>${min}℃</span>/<span>${max}℃</span></p>
         </div>
         `;
@@ -122,7 +129,6 @@ let weatherInfo = {
     countryName.innerText = `${country}`;
   },
   change3HoursDsiplay: function (data) {
-    // console.log(data);
     const { list } = data;
     const options = document.querySelectorAll('.next5days_card');
     const changeData = document.getElementById('every_3hours');
@@ -147,11 +153,9 @@ let weatherInfo = {
     let newChild = (list) => this.every3HoursList(list);
     options.forEach(function (elm) {
       elm.addEventListener('click', function () {
-        clickedItem(this); //activedate付与
-        // console.log(elm.id);
+        clickedItem(this);
         let day = elm.id;
         let newList = abstractData(list, day);
-        // console.log(newList);
         changeData.childNodes.forEach(function (item) {
           item.style.display = 'none';
         });
@@ -159,23 +163,15 @@ let weatherInfo = {
       });
     });
   },
-  // dayCalculator: function(list) {
-  //   console.log(list)
-  //   let new5dayList = [list[0]];
-  //   console.log(new5dayList)
-  //   let checkDate = new5dayList[0].dt_txt.slice(0, 10)
-  //   console.log(checkDate)
-  //   let n = list[10].dt_txt.slice(0, 10);
-  //   if(n === checkDate)
-  //     // new5dayList.forEach(item => {
-  //     //   let exitData = item.dt_txt.slice(0, 10);
-  //     //   if(exitData !== checkDate){
-  //     //     new5dayList.push(item);
-  //     //   }
-  //     // })
-  //   return new5dayList;
-  // }
+  dayCalculator: function(list) {
+    let newList = [];
+    for(let i = 0; i < list.length; i++) {
+      if(i % 8 === 0) {
+        newList.push(list[i]);
+      }
+    }
+    return newList;
+  }
 };
 
 export { weatherInfo };
-// str.substr( 開始位置, 文字数 )
